@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+	<head>
+<style>
+		::placeholder
+		{
+		color:grey;
+		}
+		form { 
+margin: 0 auto; 
+width:250px;
+}
+		</style>
+	<script>
+		function login()
+	{
+		if(document.getElementById("user").value=="")
+		{
+		alert("Please Enter Your Username");
+		}
+		else if(document.getElementById("pass").value=="")
+		{
+		alert("Please Enter Your Password");
+		}
+		else
+		{
+		document.myform1.action ="********Login.php";
+		}
+   }
+   </script>
+</head>
+<body>
+	<h1 align=center>Login</h1></br>
+		<form name="myform1" method="post">
+			Username:<br><input type="text" id="user" name="username" placeholder="Enter your Username"/><br><br>
+			Password:<br><input type="password" id="pass" name="password" placeholder="Enter your Password"/><br><br>
+			<input type="submit" name="submit" value="submit" onclick="login()"/>
+</form>
+</body>
+</html>
