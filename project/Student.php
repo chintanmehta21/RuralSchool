@@ -6,6 +6,7 @@ $username = $_POST["username"];
 $password = $_POST["password"];
 $class = $_POST["classs"];
 $gender = $_POST["gender"];
+$account = $_POST["account"];
 $sql = "SELECT * FROM Student WHERE E_Mail = '".$email."'";
 $sql1 = "SELECT * FROM Student WHERE Username = '".$username."'";
 $result = mysqli_query($conn,$sql);
@@ -18,7 +19,7 @@ elseif(mysqli_num_rows($result1)>=1){
 echo"Username already exists";
 }
 else{
-$mysql_qry = "INSERT INTO Student (Name,Email,Username,Password,Class,Gender) VALUES ('$name','$email','$username','$password','$class','$gender');";
+$mysql_qry = "INSERT INTO '".$account."'" (Name,Email,Username,Password,Class,Gender) VALUES ('$name','$email','$username','$password','$class','$gender');";
 $result = mysqli_query($conn ,$mysql_qry);
  if($result==1)
  {
