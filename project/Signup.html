@@ -31,6 +31,8 @@
 		
 		if(document.getElementById("name").value=="")
 		{
+			var us = document.getElementById("name").value;
+			document.cookie = "username="+us;
 			alert("Please Enter Your Name");
 			return false;
 		}
