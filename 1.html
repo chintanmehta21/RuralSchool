@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+/*css card*/
+$light-gray: #eceef1;
+$gray: darken(#eceef1, 30%);
+$slate: darken(#eceef1, 70%);
+$turquoise: #1abc9c;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: $light-gray;
+  font-family: 'Slabo 27px', serif;
+  color: $slate;
+}
+
+.wrapper {
+  margin: 5em auto;
+  max-width: 1000px;
+
+  background-color: #fff;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.06);
+}
+
+.header {
+  padding: 30px 30px 0;
+  text-align: center;
+
+  &__title {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 2.5em;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+  &__subtitle {
+    margin: 0;
+    font-size: 1.5em;
+    color: $gray;
+    font-family: 'Yesteryear', cursive;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+}
+
+//Grid Container
+.cards {
+  padding: 15px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+//Cards
+.card {
+  margin: 15px; 
+  width: calc((100% / 3) - 30px);
+  transition: all 0.2s ease-in-out;
+
+  //media queries for stacking cards
+  @media screen and (max-width: 991px) {
+    width: calc((100% / 2) - 30px);
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+
+  &:hover {
+    .card__inner {
+      background-color: $turquoise;
+      transform: scale(1.05);
+    }
+  }
+
+  &__inner {
+    width: 100%;
+    padding: 30px;
+    position: relative;
+    cursor: pointer;
+    
+    background-color: $gray;
+    color: $light-gray;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    text-align: center;
+
+    transition: all 0.2s ease-in-out;
+    
+    &:after {
+      transition: all 0.3s ease-in-out;
+    }
+    
+    .fa {
+      width: 100%;
+      margin-top: .25em;
+    }
+  }
+
+  //Expander
+  &__expander {
+    transition: all 0.2s ease-in-out;
+    background-color: $slate;
+    width: 100%;
+    position: relative;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    text-transform: uppercase;
+    color: $light-gray;
+    font-size: 1.5em;
+    
+    .fa {
+      font-size: 0.75em;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+
+  &.is-collapsed {
+    
+    .card__inner {
+      &:after {
+        content: "";
+        opacity: 0;
+      }
+    }
+    .card__expander {
+      max-height: 0;
+      min-height: 0;
+      overflow: hidden;
+      margin-top: 0;
+      opacity: 0;
+    }
+  }
+
+  &.is-expanded {
+
+    .card__inner {
+      background-color: $turquoise;
+      
+      &:after{
+        content: "";
+        opacity: 1;
+        display: block;
+        height: 0;
+        width: 0;
+        position: absolute;
+        bottom: -30px;
+        left: calc(50% - 15px);
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-bottom: 15px solid #333a45;
+      }
+      
+      //folder open icon
+      .fa:before {
+        content: "\f115";
+      }
+    }
+
+    .card__expander {
+      max-height: 1000px;
+      min-height: 200px;
+      overflow: visible;
+      margin-top: 30px;
+      opacity: 1;
+    }
+
+    &:hover {
+      .card__inner {
+        transform: scale(1);
+      }
+    }
+  }
+  
+  &.is-inactive {
+    .card__inner {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    
+    &:hover {
+      .card__inner {
+        background-color: $gray;
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+
+
+/* Fixed sidenav, full height */
+.sidenav {
+  display: block;
+  height: 100%;
+  width: 15vw;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+  z-index: 0;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+
+/*css side bar On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+
+/* Main content */
+.main {
+  margin-left: 10px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+.main-container {
+  display: flex;
+  height: 150vh;
+  width: 100vw;
+  overflow: hidden;
+  background: #fff;
+  float: left;
+  justify-content: initial;
+  margin: 0;
+}
+.container {
+  display: block;
+  width: 70vw;
+  height: 100vh;
+  /*background: #4444;*/
+  margin-left: 15vw;
+  justify-content: center;
+  align-items: space-between;
+
+}
+.card {
+  display: block;
+  float: left;
+  width: 98%;
+  height: 18vh;
+  background: #fff;
+  margin: 1% 1% 0.5% 1%;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  border:none;
+  border-radius: 20px;
+  box-shadow: 0 0 1rem #4444;
+  z-index: 1;
+  transition: 0.3s all ease;
+}
+.card:hover {
+  transform: scale(1.1);
+}
+* {
+  font-family: arial;
+}
+.name {
+  font-size: 45px;
+  padding: 5px;
+  color: #363636;
+}
+.class {
+  font-size: 16px;
+  padding-left: 1rem;
+}
+.school {
+  font-size: 16px;
+  padding-left: 1rem;
+}
+</style>
+</head>
+<body>
+<div class="main-container">
+  <div class="sidenav">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#clients">Clients</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact">Search</a>
+  </div>
+
+<!-- <div class="main">
+ <div class="wrapper">
+  <div class="header">
+    <h1 class="header__title">Card </h1>
+    <h2 class="header__subtitle"></h2>
+  </div> -->
+
+<div class="container" id="container" class="container" onload="populateStudent()">
+  <!-- <div class="card"><div class="name">Chintan, 20</div><div class="class">Class: TE-D</div><div class="school">School: RUral</div></div> -->
+  
+</div>
+
+  <!-- <div class="cards">
+        <span>STUDENT NAME</span>
+        </div>
+      <li>Class</li>
+      <li>School</li>
+    </div>
+
+    </div>
+
+  </div> -->
+  </div>
+<script type="text/javascript">
+//   var countdown = function(value) {
+//     if (value > 0) {
+//         console.log(value);
+//         return countdown(value - 1);
+//     } else {
+//         return value;
+//     }
+// };
+// countdown(10);
+
+function dataFeed () {
+  const request = new XMLHttpRequest();
+  request.open("get", "data/student.json");
+  request.onload = () => {
+    try {
+      const json = JSON.parse(request.responseText);
+      populateStudent(json);
+    }
+    catch (e) {
+      console.warn("Error: :_(");
+    }
+  };
+
+  request.send();
+}
+function populateStudent(json) {
+      // console.log(json.length);
+      const placeDiv = document.getElementById('container');
+      for (var i = 0; i < json.length; i++) {
+        placeDiv.innerHTML += '<div class="card"><div class="name">'+json[i][0]+','+json[i][1]+'</div><div class="class">Class: '+json[i][2]+'</div><div class="school">School: '+json[i][2]+'</div></div>';
+}
+}
+
+document.addEventListener("DOMContentLoaded", () => { dataFeed(); });
+
+</script>
+</body>
+</html> 
