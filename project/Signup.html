@@ -1,95 +1,96 @@
 <!DOCTYPE html>
-	<head>
-		<title>Admission form</title>
-		<style>
-		::placeholder
-		{
-		color:grey;
-		}
-		form { 
-margin: 0 auto; 
-width:250px;
-}
-		</style>
-	<script>
-	
- function GenderValue() { 
-            var ele = document.getElementsByName('gender'); 
-            var count=0;
-            for(i = 0; i<ele.length; i++) { 
-                if(ele[i].checked)
-					{
-                count++;
-						}
-            } 
-			return count;
-        } 
-
-		function signup()
+<head>
+	<title>Admission form</title>
+	<style>
+	::placeholder
 	{
+		color:grey;
+	}
+	form 
+	{ 
+		margin: 0 auto; 
+		width:250px;
+	}
+</style>
+<script>
+	
+	function GenderValue() { 
+		var ele = document.getElementsByName('gender'); 
+		var count=0;
+		for(i = 0; i<ele.length; i++) { 
+			if(ele[i].checked)
+			{
+				count++;
+			}
+		} 
+		return count;
+	} 
+	function signup()
+	{
+		
 		
 		if(document.getElementById("name").value=="")
 		{
-		alert("Please Enter Your Name");
-		return false;
+			alert("Please Enter Your Name");
+			return false;
 		}
 		else if(document.getElementById("email").value=="")
 		{
-		alert("Please Enter Your Email");
+			alert("Please Enter Your Email");
 		}
 		else if(document.getElementById("user").value=="")
 		{
-		alert("Please Enter Your Username");
+			alert("Please Enter Your Username");
 		}
 		else if(document.getElementById("pass").value=="")
 		{
-		alert("Please Enter Your Password");
+			alert("Please Enter Your Password");
 		}
 		else if(document.getElementById("rpass").value=="")
 		{
-		alert("Please Re-Enter Your Password");
+			alert("Please Re-Enter Your Password");
 		}
 		else if(document.getElementById("class").value=="")
 		{
-		alert("Please Enter Your Instute Class");
+			alert("Please Enter Your Instute Class");
 		}
 		else if(document.getElementById("pass").value != document.getElementById("rpass").value)
 		{
-		alert("Passwords dont match");
+			alert("Passwords dont match");
 		}
 		else if(GenderValue()==0)
 		{
-		alert("Please Select Gender");
+			alert("Please Select Gender");
 		}
 		else
 		{
-		alert("form submitted successfully");
-		document.myform.action ="https://iic2.000webhostapp.com/Student.php"
+			alert("form submitted successfully");
+			document.myform.action ="https://iic2.000webhostapp.com/Student.php"
 		}
 	}
 	
-	</script>
-	</head>
+</script>
+</head>
 
-	
 
+
+
+<body background="download.jpg">
+	<h1 align=center>Sign Up</h1></br>
+	<form name="myform"  method="post">
+		Name:<br><input type="text" id="name" name="fullname" placeholder="Please enter your name"/></br><br>
+		Email:<br><input type="text" id="email" name="email" placeholder="Please enter your email"/><br><br>
+		Username:<br><input type="text" id="user"  name="username" placeholder="Enter your Username"/><br><br>
+		Password:<br><input type="password" id="pass" name="password" placeholder="Enter your Password"/><br><br>
+		Re-enter your password:<br><input type="password" id="rpass" placeholder="Re-Enter your Password"/><br><br>
+		Class:<br><input type="text" id="class" name="classs" placeholder="Enter your class name"/><br><br>
+		Gender:<br>
+		Male<input type="radio" name="gender" value="Male">
+		Female<input type="radio" name="gender" value="Female"/><br><br>
+		<input type="submit" name="submit" value="submit" onclick="signup()"/>
+		<input type="reset" name="reset" value="reset"/>
+	</form>
 	
-	<body background="download.jpg">
-		<h1 align=center>Sign Up</h1></br>
-		<form name="myform"  method="post">
-			Name:<br><input type="text" id="name" name="fullname" placeholder="Please enter your name"/></br><br>
-			Email:<br><input type="text" id="email" name="email" placeholder="Please enter your email"/><br><br>
-			Username:<br><input type="text" id="user"  name="username" placeholder="Enter your Username"/><br><br>
-			Password:<br><input type="password" id="pass" name="password" placeholder="Enter your Password"/><br><br>
-			Re-enter your password:<br><input type="password" id="rpass" placeholder="Re-Enter your Password"/><br><br>
-			Class:<br><input type="text" id="class" name="classs" placeholder="Enter your class name"/><br><br>
-			Gender:<br>
-			Male<input type="radio" name="gender" value="Male">
-			Female<input type="radio" name="gender" value="Female"/><br><br>
-			<input type="submit" name="submit" value="submit" onclick="signup()"/>
-			<input type="reset" name="reset" value="reset"/>
-		</form>
 	
-	
-	</body>
+</body>
 </html>
